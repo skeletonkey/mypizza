@@ -1,0 +1,4 @@
+baseURL = 'http://www.mypizzaisbroken.com/'
+languageCode = 'en-us'
+theme = 'terminal'
+title = 'My Pizza is Broken'
