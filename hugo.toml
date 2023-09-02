@@ -2,7 +2,7 @@ baseURL = 'http://www.mypizzaisbroken.com/'
 languageCode = 'en-us'
 title = 'My Pizza is Broken'
 
-theme = 'terminal'
+theme = 'fuji'
 
 [Params]
 favicon = "favicon.ico"
