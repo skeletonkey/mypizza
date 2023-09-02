@@ -1,1 +1,9 @@
+node_modules/
 public/
+resources/_gen
+themes/
+
+package.json
+package-lock.json
+
+*.swp
