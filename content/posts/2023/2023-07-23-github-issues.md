@@ -52,13 +52,15 @@ If you want to learn a new skill, here are some steps to try:
 You may think your commit is insignificant; do not allow that to stop you. When venturing into the world of open-source software, you will find communities that are happy for all contributions, regardless of size or perceived importance. [Follow this link to see a one character change to a project’s documentation](https://github.com/apache/avro/commit/5f064c0d162ea3bb2a28b576c590638052177054).
 
 __Transition needs to be smoothed out - maybe personal story:__
+Many years ago I was tasked with adding Avro to a streaming project. Working through the documentation I discoverd a spelling error and I filed [this](https://github.com/apache/avro/commit/5f064c0d162ea3bb2a28b576c590638052177054) Pull Request. Techincally, this one character documentation fix makes me an Avro contributor. This seemingly insignificant contribution helped the next user of Avro because that person doesn't have to mkae the same mistake and discover that I had to make.
 
-As with the above example, don’t believe all commits must be code. Documentation updates are always welcome and can be an easy first commit to a project.
+Bottom line: if you have to do discovery to use a project, explaining what you had to work through is valuable information for the next person.
+
 
 ## How to Choose a GitHub Issue Wisely
 
 __take a second look at this paragraph:__
-If you are still new to coding and think Issues might be a valuable tool, there are many available projects to try.  Finding the right projects for you can sometimes be daunting.  If you’re an old pro the daunting part might be trying something new, like Issues.  Again, pick your project carefully, with an eye toward your own needs
+Time is our only non-replenishable possession which make chosing projects to work on a decision we need to approach carefully. Whether you are new to programming or an old pro GitHub Issues is a good tool in identifying projects that want help.
 
 Here are some things to consider while looking for a project to contribute to:
 
