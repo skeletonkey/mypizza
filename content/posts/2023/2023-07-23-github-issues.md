@@ -31,9 +31,7 @@ Enter “Issues”, an itemized list of labeled items that require further work.
 
 GitHub has been rolling out more features to help project creators. Issues, the feature we are focusing on here, helps organize requirements, future work, and facilitate collaboration. It allows the project owner to create discrete units of work to move the project along.
 
-TODO: add a section and picture about what Issues make availble: tags, descriptions, etcs.  Then a transition into what the description should include
-
-Ideally, Issues should have the following:
+Ideally, Issues should communicate the following information:
 
 * Summary - describing what needs to be accomplished and/or how it will impact the project.
 * Acceptance Criteria - explicit steps that need to be covered for the Issue to be considered done.
@@ -41,14 +39,11 @@ Ideally, Issues should have the following:
 
 ## How GitHub Issues Will Help You Grow
 
-TODO: Need to add more infomration of 'growth' and how this helps your growth.
-TODO: 'flagged' needs to be changed to 'labeled'
+Reviewing available GitHub Issues is a great way to discover projects waiting for a development help. Often as I work on a pation project, creative juices flowing with All Them Witches cranked up high through my headphones when I realize something needs refined, refactored, or implemented.  If I stop to work on that, I loose the momentum and can stall out.  With Issues, I can capture what is needed and come back to it when I have the time or better yet allow someone else to lend a hand. This is where you come you; by finding my GitHub Issues. When starting out trying to learn a project or new technology look for any items with the tag “good first issue." These should give you a good place to start. These may often be relatively easy to fix and are a great entry point for open-source contributions.
 
-Issues is a great place to recognize projects that have open tasks waiting for a developer. Too often I have been in the middle of writing my code, deep in the Matrix, creative juices flowing when I realize something needs refinement.  If I stop to work on that, I loose the momentum and can stall out.  With Issues, I can flag that area of concern and come back to it when I have the time to learn a new skill and build my portfolio. Any flagged item with the tag “good first issue” will give you a place to start. These may often be relatively easy to fix and are a great entry point for open-source contributions.
+Here are some steps to keep in mind as you start working on a GitHub Issue:
 
-If you want to learn a new skill, here are some steps to try:
-
-* Set realistic goals. It takes time and effort to become proficient. Easy is relative; completing that first task can take a significant effort.
+* Set realistic goals. It takes time and effort to become proficient. Easy is relative; completing that first task on a new project can take a significant effort.
 * Be patient. There will be times when you feel frustrated or discouraged, just remember that everyone makes mistakes when learning something new.
 * Don’t be afraid to ask for help. You are here to improve a project; the owners will be happy with your initiative. Having said that, remember patience. This is someone’s passion project, but they probably have a day job too and It may take a day or two to respond.
 
@@ -80,11 +75,9 @@ If you find a project that holds your attention but has no “development” doc
 
 The Issue should have a clear goal and definition of done. Rarely does an Issue come with section headers, but the issue should have an identifiable Summary, Acceptance Criteria (describes what needs to be done), and Notes that help guide you to accomplish the acceptance criteria.
 
-If any of this information is missing or unclear, ask for clarification. 
+If any of this information is missing or unclear, ask for clarification.
 
-TODO: 'Your job is to code' is too specific.  Trying to communicate that you are here to accomplish a task, not define it.
-
-Your job is to code, not define the task or decide what success looks like, that is for the creator.  Coding is hard enough, so before you commit to expending a great deal of effort on this task make sure everyone agrees what it is that needs to be done.  That will keep you from blindly coding while the owner changes the parameters with every email.
+You've come to contribute code, not define the task or decide what success looks like, that is for the creator.  Coding is hard enough, so before you commit to expending a great deal of effort on this task make sure everyone agrees what it is that needs to be done. That will keep you from blindly coding while the owner changes the parameters with every email.
 
 ### The Project Needs to Be Active
 
