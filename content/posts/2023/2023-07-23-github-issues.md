@@ -17,13 +17,13 @@ __TL:DR;__ GitHub Issues is an excellent way to find and contribute to open-sour
 
 ## What Is GitHub
 
-If you’ve never heard of GitHub, check out [Programming with Mosh](https://www.youtube.com/watch?v=2ReR1YJrNOM) for a 2-minute explanation. For a more in-depth example of using GitHub, you can look at DevOps For Developers’ [Introduction to Source Control for DevOps](https://www.youtube.com/watch?v=VfgsJhMPh4w).
+If you've never heard of GitHub, check out [Programming with Mosh](https://www.youtube.com/watch?v=2ReR1YJrNOM) for a 2-minute explanation. For a more in-depth example of using GitHub, you can look at DevOps For Developers' [Introduction to Source Control for DevOps](https://www.youtube.com/watch?v=VfgsJhMPh4w).
 
 ## GitHub Has Issues
 
-GitHub literally has [Issues](https://github.com/search?q=label%3A%22good+first+issue%22+language%3AGo+&type=issues)! There’s a joke in there somewhere but we will save it for another time. As a project owner, there are always more things to get done than there is time.
+GitHub literally has [Issues](https://github.com/search?q=label%3A%22good+first+issue%22+language%3AGo+&type=issues)! There's a joke in there somewhere but we will save it for another time. As a project owner, there are always more things to get done than there is time.
 
-Enter “Issues”, an itemized list of labeled items that require further work.
+Enter "Issues", an itemized list of labeled items that require further work.
 
 ![Issues for your project](/posts/2023/github_has_issues.png)
 
@@ -39,13 +39,13 @@ Ideally, Issues should communicate the following information:
 
 ## How GitHub Issues Will Help You Grow
 
-Reviewing available GitHub Issues is a great way to discover projects waiting for a development help. Often as I work on a pation project, creative juices flowing with All Them Witches cranked up high through my headphones when I realize something needs refined, refactored, or implemented.  If I stop to work on that, I loose the momentum and can stall out.  With Issues, I can capture what is needed and come back to it when I have the time or better yet allow someone else to lend a hand. This is where you come you; by finding my GitHub Issues. When starting out trying to learn a project or new technology look for any items with the tag “good first issue." These should give you a good place to start. These may often be relatively easy to fix and are a great entry point for open-source contributions.
+Reviewing available GitHub Issues is a great way to discover projects waiting for a development help. Often as I work on a pation project, creative juices flowing with All Them Witches cranked up high through my headphones when I realize something needs refined, refactored, or implemented.  If I stop to work on that, I loose the momentum and can stall out.  With Issues, I can capture what is needed and come back to it when I have the time or better yet allow someone else to lend a hand. This is where you come you; by finding my GitHub Issues. When starting out trying to learn a project or new technology look for any items with the tag "good first issue." These should give you a good place to start. These may often be relatively easy to fix and are a great entry point for open-source contributions.
 
 Here are some steps to keep in mind as you start working on a GitHub Issue:
 
 * Set realistic goals. It takes time and effort to become proficient. Easy is relative; completing that first task on a new project can take a significant effort.
 * Be patient. There will be times when you feel frustrated or discouraged, just remember that everyone makes mistakes when learning something new.
-* Don’t be afraid to ask for help. You are here to improve a project; the owners will be happy with your initiative. Having said that, remember patience. This is someone’s passion project, but they probably have a day job too and It may take a day or two to respond.
+* Don't be afraid to ask for help. You are here to improve a project; the owners will be happy with your initiative. Having said that, remember patience. This is someone's passion project, but they probably have a day job too and It may take a day or two to respond.
 
 ## Any Commit Is Welcome
 
@@ -63,13 +63,13 @@ Here are some things to consider while looking for a project to contribute to:
 
 ### The Project Should Interest You
 
-Let’s be honest; you are less likely to finish a GitHub Issue if you’re not interested in the work. Sometimes, you need to push through the suck to grow and learn; working on a subject that you believe in helps.
+Let's be honest; you are less likely to finish a GitHub Issue if you're not interested in the work. Sometimes, you need to push through the suck to grow and learn; working on a subject that you believe in helps.
 
 ### There Should Be Insturction To Help You Start
 
-Once you have a narrowed list of interesting projects, an excellent place to start is with each project’s README.md file. Take the time to read any files ending in .md, as those files will have more information about different aspects of the project. CONTRIBUTING.md is the usual location for opportunities to contribute.
+Once you have a narrowed list of interesting projects, an excellent place to start is with each project's README.md file. Take the time to read any files ending in .md, as those files will have more information about different aspects of the project. CONTRIBUTING.md is the usual location for opportunities to contribute.
 
-If you find a project that holds your attention but has no “development” documentation, then you’ve found your first commit. Take a first stab at the documentation and ask the project’s owner for clarification or help if you get stuck. This interaction can help you determine if this is worth your time and effort.  If not, keep looking.
+If you find a project that holds your attention but has no "development" documentation, then you've found your first commit. Take a first stab at the documentation and ask the project's owner for clarification or help if you get stuck. This interaction can help you determine if this is worth your time and effort.  If not, keep looking.
 
 ### GitHub Issues Should Be Clearly Defined
 
@@ -94,4 +94,4 @@ How do you know if the project is active?
 
 ## Once You Completed a GitHub Issue
 
-Having exhausted my own supply of Red Bull, this essential next step is beyond the scope of this post. I’ll let Will Button, of DevOps for Developers, pick up the slack with [Contribute to Open Source to gain DevOps experience](https://www.youtube.com/watch?v=NkVpcsh_TfA&t=222s).
+Having exhausted my own supply of Red Bull, this essential next step is beyond the scope of this post. I'll let Will Button, of DevOps for Developers, pick up the slack with [Contribute to Open Source to gain DevOps experience](https://www.youtube.com/watch?v=NkVpcsh_TfA&t=222s).
