@@ -39,7 +39,7 @@ Ideally, Issues should communicate the following information:
 
 ## How GitHub Issues Will Help You Grow
 
-Reviewing available GitHub Issues is a great way to discover projects waiting for a development help. Often as I work on a pation project, creative juices flowing with All Them Witches cranked up high through my headphones when I realize something needs refined, refactored, or implemented.  If I stop to work on that, I loose the momentum and can stall out.  With Issues, I can capture what is needed and come back to it when I have the time or better yet allow someone else to lend a hand. This is where you come you; by finding my GitHub Issues. When starting out trying to learn a project or new technology look for any items with the tag "good first issue." These should give you a good place to start. These may often be relatively easy to fix and are a great entry point for open-source contributions.
+Reviewing available GitHub Issues is a great way to discover projects waiting for a development help. Often as I work on a pation project, creative juices flowing with All Them Witches cranked up high through my headphones when I realize something needs refined, refactored, or implemented. If I stop to work on that, I loose the momentum and can stall out. With Issues, I can capture what is needed and come back to it when I have the time or better yet allow someone else to lend a hand. This is where you come you; by finding my GitHub Issues. When starting out trying to learn a project or new technology look for any items with the tag "good first issue." These should give you a good place to start. These may often be relatively easy to fix and are a great entry point for open-source contributions.
 
 Here are some steps to keep in mind as you start working on a GitHub Issue:
 
@@ -69,7 +69,7 @@ Let's be honest; you are less likely to finish a GitHub Issue if you're not inte
 
 Once you have a narrowed list of interesting projects, an excellent place to start is with each project's README.md file. Take the time to read any files ending in .md, as those files will have more information about different aspects of the project. CONTRIBUTING.md is the usual location for opportunities to contribute.
 
-If you find a project that holds your attention but has no "development" documentation, then you've found your first commit. Take a first stab at the documentation and ask the project's owner for clarification or help if you get stuck. This interaction can help you determine if this is worth your time and effort.  If not, keep looking.
+If you find a project that holds your attention but has no "development" documentation, then you've found your first commit. Take a first stab at the documentation and ask the project's owner for clarification or help if you get stuck. This interaction can help you determine if this is worth your time and effort. If not, keep looking.
 
 ### GitHub Issues Should Be Clearly Defined
 
@@ -77,7 +77,7 @@ The Issue should have a clear goal and definition of done. Rarely does an Issue 
 
 If any of this information is missing or unclear, ask for clarification.
 
-You've come to contribute code, not define the task or decide what success looks like, that is for the creator.  Coding is hard enough, so before you commit to expending a great deal of effort on this task make sure everyone agrees what it is that needs to be done. That will keep you from blindly coding while the owner changes the parameters with every email.
+You've come to contribute code, not define the task or decide what success looks like, that is for the creator. Coding is hard enough, so before you commit to expending a great deal of effort on this task make sure everyone agrees what it is that needs to be done. That will keep you from blindly coding while the owner changes the parameters with every email.
 
 ### The Project Needs to Be Active
 
