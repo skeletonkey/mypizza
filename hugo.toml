@@ -1,6 +1,6 @@
 baseURL = 'http://www.mypizzaisbroken.com/'
 languageCode = 'en-us'
-title = 'My Pizza is Broken'
+title = 'My Pizza Is Broken'
 
 theme = 'fuji'
 
