@@ -15,7 +15,7 @@ Thank you for stopping by,
 
 Erik
 
-[Original Post](https://mypizzisbroken.com/posts/intro/)
+[Original Post](https://mypizzaisbroken.com/posts/intro/)
 
 ## Feedback
 
