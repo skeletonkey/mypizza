@@ -3,6 +3,90 @@ languageCode = 'en-us'
 title = 'My Pizza Is Broken'
 
 theme = 'fuji'
+hasCJKLanguage = false
+enableEmoji = true
+enableRobotsTXT = true
 
-[Params]
+defaultContentLanguage = "en"
+summaryLength = 100
+
+[pagination]
+pagerSize = 10
+
+# Add googleAnalytics to prevent template errors (can be empty)
+googleAnalytics = ""
+
+[outputFormats]
+[outputFormats.SearchIndex]
+isPlainText = true
+notAlternative = true
+mediaType = "application/json"
+path = "/search/"
+
+[outputs]
+home = ["HTML", "RSS", "SearchIndex"]
+
+[permalinks]
+post = "/:section/:contentbasename/"
+
+[params]
+author = "My Pizza Is Broken"
+subTitle = "A blog about broken things."
+defaultTheme = "auto"
 favicon = "favicon.ico"
+
+# Word counter and read time indicator in post metadata
+showWordCounter = true
+showReadTime = false
+hideNoTagList = false
+
+# License in the footer
+showLicenseInFooter = false
+
+# License at the end of each post
+showLicense = false
+showToc = true
+
+# Copyright
+copyrightStartYear = "2023"
+
+# Posts shown in homepage
+mainSections = ["posts"]
+
+# Comments disabled
+# utterancesRepo = ""
+# disqusShortname = ""
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
+[markup.highlight]
+codeFences = false
+
+[markup.tableOfContents]
+startLevel = 2
+endLevel = 3
+
+[taxonomies]
+tag = "tags"
+
+[menu]
+[[menu.nav]]
+name = "Home"
+url = "/"
+weight = 1
+[[menu.nav]]
+name = "Archives"
+url = "/archives/"
+weight = 2
+[[menu.nav]]
+name = "About"
+url = "/about/"
+weight = 3
+
+[build]
+noJSConfigInAssets = true
+
+[security]
+enableInlineShortcodes = true
