@@ -1,0 +1,28 @@
+# Example robots.txt - customize as needed
+# This file controls what web crawlers can access on your site
+
+# Allow all robots to access everything (default behavior)
+User-agent: *
+Allow: /
+
+# Uncomment the lines below if you want to be more restrictive:
+
+# Block all robots from accessing your site
+# User-agent: *
+# Disallow: /
+
+# Allow only Google and Bing, block others
+# User-agent: Googlebot
+# Allow: /
+# User-agent: Bingbot
+# Allow: /
+# User-agent: *
+# Disallow: /
+
+# Block specific directories (uncomment if needed)
+# Disallow: /admin/
+# Disallow: /private/
+# Disallow: /drafts/
+
+# Point to your sitemap (helps search engines find your content)
+Sitemap: http://www.mypizzaisbroken.com/sitemap.xml
