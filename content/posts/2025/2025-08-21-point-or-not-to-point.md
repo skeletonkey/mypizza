@@ -6,8 +6,7 @@ authorTwitter = "" #do not include @
 cover = ""
 tags = ["Go","Learning"]
 keywords = ["Go", "Golang", "pointers", "pointers vs values"]
-description = "Go as a langauge is pass by value.
-When is it a good idea to use a pointer and are there any down sides?"
+description = "Go as a language is pass by value. When is it a good idea to use a pointer and are there any down sides?"
 showFullContent = false
 readingTime = true
 hideComments = false
@@ -23,6 +22,8 @@ color = "" #color from the theme settings
 > And by leaving it's scope end them.
 >
 > *— Shakespeare (probably)*
+
+**TL;DR:** Use values by default in Go; only use pointers when you need mutability, performance for large structs, or to distinguish between zero values and nil. Be mindful of dereferencing pointers since dereferencing a nil is a run time panic.
 
 Go is fundamentally written to be passed by value.
 Everything is passed by value.
