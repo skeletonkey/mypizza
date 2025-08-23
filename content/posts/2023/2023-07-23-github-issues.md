@@ -13,7 +13,7 @@ hideComments = false
 color = "" #color from the theme settings
 +++
 
-__TL:DR;__ GitHub Issues is an excellent way to find and contribute to open-source projects. Sorry, but you no longer have an excuse not to learn, grow, or contribute. (https://github.com/search?q=label%3A%22good+first+issue%22+language%3AGo+&type=issues)
+__TL:DR;__ GitHub Issues is an excellent way to find and contribute to open-source projects. Sorry, but you no longer have an excuse not to learn, grow, or contribute. Search for [label:"good first issue" language:Go is:open no:assignee](https://github.com/search?q=label%3A%22good+first+issue%22+language%3AGo+is%3Aopen+no%3Aassignee&type=issues)
 
 ## What Is GitHub
 
