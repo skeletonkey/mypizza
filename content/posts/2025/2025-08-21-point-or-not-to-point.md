@@ -6,7 +6,7 @@ authorTwitter = "" #do not include @
 cover = ""
 tags = ["Go","Learning"]
 keywords = ["Go", "Golang", "pointers", "pointers vs values"]
-description = "Go as a langauge is pass by value\.
+description = "Go as a langauge is pass by value.
 When is it a good idea to use a pointer and are there any down sides?"
 showFullContent = false
 readingTime = true
@@ -24,148 +24,136 @@ color = "" #color from the theme settings
 >
 > *— Shakespeare (probably)*
 
-Basically, this is about when to use pointers in Go\.
-A lot of our code uses pointers to an excess, and we need to kind of stop that\.
-So I just thought a little deeper dive into how Go works with pointers is in store\.
-I'm going to end up doing a deeper dive, but at the end I will have very simple practical suggestions\.
-So don't worry too much\.
-But the basic idea is Go is fundamentally written to be passed by value\.
-Everything is passed by value\.
-All the function arguments, even your pointers, you're literally passing a copy of the memory address\.
-when you pass a pointer to a function\.
-So why should we use pointers? Basically, you need to use a pointer if you need mutability for performance for larger structs and large pieces of data and optional values, or specifically values you need to know whether it was not provided at all or whether it was provided with its empty value, like a zero for an int or a empty string for a string\.
-When not to use pointers? Well, because it is mutable\.
-You are allowing something else to potentially change your variable\.
-Nil dereferencing, I created a nice bug in valuation service last week or this week, and fortunately was caught before we deployed it\.
-But basically, if you try to dereference a nil, that causes a runtime panic\.
-And the worst part is it can live on the heap\.
-The heap requires garbage collection\.
-And, oh, I don't know if one point, does it prevent it or does it simply, is there a check for it? - It's a Vorneuil, like compiler Vorneuil\.
-- Nice, okay\.
-So once we get to 125, so in six months, then we're gonna have a little backstop on that\.
-Again, living on the heap requires garbage collection\.
-Garbage collection can lead to a stop the world event, and you don't have any control over that\.
-So copious throwing things on the heap can have unexpected performance implications\.
-You can identify for yourself if something is going to go onto the heap with the GC flags dash M, but that is a pain in the butt\.
-So if you want to do that, enjoy\.
-It's a fun experiment\.
-It's not something you'd want to do if you're actually wanting to effectively program during the day\.
-So real quick, the heap versus the stack\.
-This is a contrived example, but it gives you the idea of what's going on\.
-The stack gets frames or memory frames\.
-So basically, we're on the line where we've set foo equal to the string bar\.
-So we see on the stack is foo a string in the frame of method one\.
-Once we get into the second method, we'll see there's now we have a second frame and we have the value and the value of string and value two, which is a pointer to string\.
-Basically, right here, it stays in the stack because the co-compiler will do something called what is escape analysis\.
-It tries to see whether that pointer is going to exist past the current frame\.
+Go is fundamentally written to be passed by value.
+Everything is passed by value.
+All the function arguments, even your pointers, you're literally passing a copy of the memory address.
+when you pass a pointer to a function.
+So why should we use pointers? Basically, you need to use a pointer if you need mutability for performance for larger structs and large pieces of data and optional values, or specifically values you need to know whether it was not provided at all or whether it was provided with its empty value, like a zero for an int or a empty string for a string.
+When not to use pointers? Well, because it is mutable.
+You are allowing something else to potentially change your variable.
+Nil dereferencing, I created a nice bug in valuation service last week or this week, and fortunately was caught before we deployed it.
+But basically, if you try to dereference a nil, that causes a runtime panic.
+And the worst part is it can live on the heap.
+The heap requires garbage collection.
+And, oh, I don't know if one point, does it prevent it or does it simply, is there a check for it? - It's a Vorneuil, like compiler Vorneuil.
+- Nice, okay.
+So once we get to 125, so in six months, then we're gonna have a little backstop on that.
+Again, living on the heap requires garbage collection.
+Garbage collection can lead to a stop the world event, and you don't have any control over that.
+So copious throwing things on the heap can have unexpected performance implications.
+You can identify for yourself if something is going to go onto the heap with the GC flags dash M, but that is a pain in the butt.
+So if you want to do that, enjoy.
+It's a fun experiment.
+It's not something you'd want to do if you're actually wanting to effectively program during the day.
+So real quick, the heap versus the stack.
+This is a contrived example, but it gives you the idea of what's going on.
+The stack gets frames or memory frames.
+So basically, we're on the line where we've set foo equal to the string bar.
+So we see on the stack is foo a string in the frame of method one.
+Once we get into the second method, we'll see there's now we have a second frame and we have the value and the value of string and value two, which is a pointer to string.
+Basically, right here, it stays in the stack because the co-compiler will do something called what is escape analysis.
+It tries to see whether that pointer is going to exist past the current frame.
 If it believes that it does or can't determine if it will or will not, then it will escape that value into the heap.
 
-Here, Val2, we can see it's not going to exist past this method, so it can stay in the stack\.
-However, now we create result, and we are going to pass back a pointer to result, which This then is going to cause result right now existing in the stack, but once we come out of this, we'll see that the memory frame for method two is gone, but the pointer to result has been thrown onto the heap\.
-And now we also see we also have a bar, which is another pointer\.
-So in this case, now we have the pointer basically living in two spaces\.
-We've, in essence, duplicated the memory footprint\.
-And of course, as we can see, once we exit the method altogether, assuming that the program is still running, the stack is now empty, it is immediately reclaimed\.
-There's no garbage collection, but the pointer and the heap will exist until the garbage collector comes around to do it, to fix it\.
-You do not have control over when that actually gets deleted or released\.
-So the best idea is always just start with values as the default, especially for int, strings, bools, the core types, there is, unless you need to check for non-existence, a nil, or unless you need to determine the difference in between its zero type and whether it was provided, these should never be pointers\.
-Small structs also should be passed around by value\.
-So that begs the question, what is a small struct? Well, reliable or articles that seem to have good data behind them basically say anything from 10 bytes to 10 megabytes\.
-Well, that's a huge range\.
-So if it's greater than 10 megabytes, you better be using a pointer\.
-Of course, I would assume that if you're approaching that, We're doing something wrong, probably\.
-But it's more on the 10 bytes part is where we need to worry about\.
-When is it worth to incur the cost of a pointer? And from that, we need to know how big is our struct\.
-So this goes into what we call type alignment\.
-And from the Go specs, we see that the guaranteed size of each of these variables is one byte, two bytes, four bytes, and eight bytes\.
-And you'll notice that a pointer is eight bytes\.
-So if you make a pointer to a byte, you're literally inflating the size of that variable 800%\.
-So why does the type alignment matter with our struct? So here we have a struct\.
-It basically has three bytes, one in 32, one in 64\.
-And we can see the overall size of the struct is 32 bytes\.
-And this is because of padding\.
-So it will attempt to pad according to the largest data type that's in there\.
-But it also does it in order\.
-Because as we should know that when you are creating a variable of a struct, You can either create it with named variables or by positional\.
-So position matters in Go\.
-So here by poor alignment, we've created this large struct when in reality, if we simply reorganize it from largest to smallest and grouping our types together, we shrink it by half\.
-So again, when creating a struct, be mindful of basically the order of your variables\.
-Don't intermix them\.
-That's just going to create a bigger and bigger struct\.
-Again, 16 bytes, this should probably be something that we're passing by value\.
-But to truly know if it's better to pass it by value or to use a pointer, we have to do the benchmarking, which in very high throughput software, that will have its benefits\.
-Things that we're working on, for the most part, you can just kind of rule as a thumbs it\.
-So basically, when creating a struct, go from largest type to smallest and group your types together\.
-That will create a-- no, Go will not reorder the fields because the order is important\.
-So the Go compiler will not do that for you\.
-If Go would have selected to not allow structs to be created with positional instantiation, then the compiler could have done-- then they could have had the compiler do that\.
-But for reasons which I did not look up, they decided to go with the order matters and it will not change\.
-So again, like I said, if you really need to know, you need to measure, you need to use the benchmarking tools\.
-Data is better than intuition, but that takes time\.
-And honestly, if we were working on, if we were doing something that's creating blockchains or was mission critical and real time, then yes, we would need to do benchmarking\.
-For what we're doing, where we have clients and SLAs up to whole seconds, we really don't need to do the benchmarking\.
-But we still should do these things intelligently\.
-One thing I do need to mention-- and this was a surprise to me, which I should have known-- is reference-like types, which are slices, maps, and channels\.
-So these are things\.
-They are passed by values, but they point to their data\.
-This is why we have the weird append syntax\.
-If you want to append something to your slice, its variable equals append variable then what you're wanting to append\.
-The reason being is if underneath the hood, it needs to add or grow it, it creates a brand new instance of that variable\.
-So here's the rub\.
-If you are passing the pointer by value to another function which then grows, let's say the slice, and that slice needs to be reallocated\.
-It's going to create a brand new memory location\.
-What you still have in your main function is no longer pointing to the right thing\.
-It's basically like trying to update a variable in a different function and then wondering why that didn't make it back out of that function\.
-It's because it was passed by value\.
-Be careful\.
-If you have a map or a channel or a slice in your struct, be very diligent about how you are passing it around\.
-If you decide to pass it by value, you may become a victim of losing data\.
-And Jerry, I advised you wrong on that about a month ago\.
-So hopefully we can find that and fix that problem\.
-Also, we have AI\.
-Don't stress over, should I be using a pointer? Should I be doing it by value? Start with by value, and then before you commit your code or before you finalize your code, I've been using this prompt\.
-And it's basically use the repo reader to find code, update it for the current branch, and do a code review\.
-And then I give it some rules\.
-The big one's saying, look if-- analyze if using pointers would be beneficial\.
-And ask me\.
-Don't just do anything and make assumptions\.
-But running with that, basically finish your code, let it suggest, use the good hygiene of what we talked about\.
-Like what I was saying is, I didn't work on the end of this, so it's gonna be a little rough, sorry\.
-Basically start with values, use pointers strategically, create your structs from the largest to smallest, grouping your types together, And ask AI for help\.
-Thoughts, questions, things that I missed or glossed over? - So you mentioned benchmarking\.
-Did you manage to really measure some huge performance impact by reordering such small structs? - I have not\.
-I read articles where they did do it\.
-And when you look at the simple examples, they don't look that impressive\.
-So basically, yeah\.
-If you're looking at readability versus, or basically, let me back up\.
-The one example where I saw, they basically saw about a 10 to 20% improvement because of the reordering of the struct\.
-Now, again, that was contrived\.
-I have not attempted this on, I have not taken the time to try to do this on like a large scale, write something really bad, benchmark it against something written really well\.
-But yes, there is a performance boost by changing that\.
-Again, I would say rule of thumb, because of the problem space that we're in, I would lean on readability over, oh, I should put these two ints together, but it reads better if they are apart\.
-In that case, I would go for readability over the letter of the law, but I want us to at least have in the back of our mind what we're doing\.
-- Yeah, that's about it as well\.
-Like I would always prefer readability than if there are performance struggles, then we could optimize\.
-- Yeah, and I think we do wanna avoid early over optimization\.
-So just write it, you know, write it well, and then yeah, have the AI review it or, yeah, make those calls after the fact\.
-Once all change will be huge page\.
-(murmurs) Yeah, thank you, Aaron\.
-But yeah, as Aaron says, it could be huge\.
-But yeah, just like everything else with programming, we want to know what the consequences are\.
-Well, my father always said, "Know the regulation before you break it." we should understand what the downside is and then have a reason why we did it the other way\.
-If you can defend your choices, then they're worth making\.
-If you didn't know that you were breaking or doing something bad, then that's just bad on you\.
-I think there's some linting plugins that can reorder the structs for you\.
-- Yes, and if you've updated your golang- the linting thing to the latest version that I've kind of cobbled together, it's at least in valuation in the answer service if you wanna take a look and update your project\.
-And you run make lint, it will tell you if you have a struct that is badly oversized\.
-So yeah, we do have linting for that if your project is up to date\.
->> Yeah, and sorry, like I was mistaken, go 1.25 wouldn't warn you for that nil point in the reference, it's something else\.
->> Okay, I do know that 1.25, they added something to save your butt, But I can't remember what that is right now either\.
-Any other questions or thoughts? All right, yeah, if you think of anything later on, just feel free to ping me\.
-I'll make the recording available to everyone who signed up\.
-And you guys have a wonderful day\.
-Thank you\.
-Thanks, Eric\.
-Great\.
-Bye\.
-You too.
+Here, Val2, we can see it's not going to exist past this method, so it can stay in the stack.
+However, now we create result, and we are going to pass back a pointer to result, which This then is going to cause result right now existing in the stack, but once we come out of this, we'll see that the memory frame for method two is gone, but the pointer to result has been thrown onto the heap.
+And now we also see we also have a bar, which is another pointer.
+So in this case, now we have the pointer basically living in two spaces.
+We've, in essence, duplicated the memory footprint.
+And of course, as we can see, once we exit the method altogether, assuming that the program is still running, the stack is now empty, it is immediately reclaimed.
+There's no garbage collection, but the pointer and the heap will exist until the garbage collector comes around to do it, to fix it.
+You do not have control over when that actually gets deleted or released.
+So the best idea is always just start with values as the default, especially for int, strings, bools, the core types, there is, unless you need to check for non-existence, a nil, or unless you need to determine the difference in between its zero type and whether it was provided, these should never be pointers.
+Small structs also should be passed around by value.
+So that begs the question, what is a small struct? Well, reliable or articles that seem to have good data behind them basically say anything from 10 bytes to 10 megabytes.
+Well, that's a huge range.
+So if it's greater than 10 megabytes, you better be using a pointer.
+Of course, I would assume that if you're approaching that, We're doing something wrong, probably.
+But it's more on the 10 bytes part is where we need to worry about.
+When is it worth to incur the cost of a pointer? And from that, we need to know how big is our struct.
+So this goes into what we call type alignment.
+And from the Go specs, we see that the guaranteed size of each of these variables is one byte, two bytes, four bytes, and eight bytes.
+And you'll notice that a pointer is eight bytes.
+So if you make a pointer to a byte, you're literally inflating the size of that variable 800%.
+So why does the type alignment matter with our struct? So here we have a struct.
+It basically has three bytes, one in 32, one in 64.
+And we can see the overall size of the struct is 32 bytes.
+And this is because of padding.
+So it will attempt to pad according to the largest data type that's in there.
+But it also does it in order.
+Because as we should know that when you are creating a variable of a struct, You can either create it with named variables or by positional.
+So position matters in Go.
+So here by poor alignment, we've created this large struct when in reality, if we simply reorganize it from largest to smallest and grouping our types together, we shrink it by half.
+So again, when creating a struct, be mindful of basically the order of your variables.
+Don't intermix them.
+That's just going to create a bigger and bigger struct.
+Again, 16 bytes, this should probably be something that we're passing by value.
+But to truly know if it's better to pass it by value or to use a pointer, we have to do the benchmarking, which in very high throughput software, that will have its benefits.
+Things that we're working on, for the most part, you can just kind of rule as a thumbs it.
+So basically, when creating a struct, go from largest type to smallest and group your types together.
+That will create a-- no, Go will not reorder the fields because the order is important.
+So the Go compiler will not do that for you.
+If Go would have selected to not allow structs to be created with positional instantiation, then the compiler could have done-- then they could have had the compiler do that.
+But for reasons which I did not look up, they decided to go with the order matters and it will not change.
+So again, like I said, if you really need to know, you need to measure, you need to use the benchmarking tools.
+Data is better than intuition, but that takes time.
+And honestly, if we were working on, if we were doing something that's creating blockchains or was mission critical and real time, then yes, we would need to do benchmarking.
+For what we're doing, where we have clients and SLAs up to whole seconds, we really don't need to do the benchmarking.
+But we still should do these things intelligently.
+One thing I do need to mention-- and this was a surprise to me, which I should have known-- is reference-like types, which are slices, maps, and channels.
+So these are things.
+They are passed by values, but they point to their data.
+This is why we have the weird append syntax.
+If you want to append something to your slice, its variable equals append variable then what you're wanting to append.
+The reason being is if underneath the hood, it needs to add or grow it, it creates a brand new instance of that variable.
+So here's the rub.
+If you are passing the pointer by value to another function which then grows, let's say the slice, and that slice needs to be reallocated.
+It's going to create a brand new memory location.
+What you still have in your main function is no longer pointing to the right thing.
+It's basically like trying to update a variable in a different function and then wondering why that didn't make it back out of that function.
+It's because it was passed by value.
+Be careful.
+If you have a map or a channel or a slice in your struct, be very diligent about how you are passing it around.
+If you decide to pass it by value, you may become a victim of losing data.
+And Jerry, I advised you wrong on that about a month ago.
+So hopefully we can find that and fix that problem.
+Also, we have AI.
+Don't stress over, should I be using a pointer? Should I be doing it by value? Start with by value, and then before you commit your code or before you finalize your code, I've been using this prompt.
+And it's basically use the repo reader to find code, update it for the current branch, and do a code review.
+And then I give it some rules.
+The big one's saying, look if-- analyze if using pointers would be beneficial.
+And ask me.
+Don't just do anything and make assumptions.
+But running with that, basically finish your code, let it suggest, use the good hygiene of what we talked about.
+Like what I was saying is, I didn't work on the end of this, so it's gonna be a little rough, sorry.
+Basically start with values, use pointers strategically, create your structs from the largest to smallest, grouping your types together, And ask AI for help.
+Thoughts, questions, things that I missed or glossed over? - So you mentioned benchmarking.
+Did you manage to really measure some huge performance impact by reordering such small structs? - I have not.
+I read articles where they did do it.
+And when you look at the simple examples, they don't look that impressive.
+So basically, yeah.
+If you're looking at readability versus, or basically, let me back up.
+The one example where I saw, they basically saw about a 10 to 20% improvement because of the reordering of the struct.
+Now, again, that was contrived.
+I have not attempted this on, I have not taken the time to try to do this on like a large scale, write something really bad, benchmark it against something written really well.
+But yes, there is a performance boost by changing that.
+Again, I would say rule of thumb, because of the problem space that we're in, I would lean on readability over, oh, I should put these two ints together, but it reads better if they are apart.
+In that case, I would go for readability over the letter of the law, but I want us to at least have in the back of our mind what we're doing.
+- Yeah, that's about it as well.
+Like I would always prefer readability than if there are performance struggles, then we could optimize.
+- Yeah, and I think we do wanna avoid early over optimization.
+So just write it, you know, write it well, and then yeah, have the AI review it or, yeah, make those calls after the fact.
+Once all change will be huge page.
+(murmurs) Yeah, thank you, Aaron.
+But yeah, as Aaron says, it could be huge.
+But yeah, just like everything else with programming, we want to know what the consequences are.
+Well, my father always said, "Know the regulation before you break it." we should understand what the downside is and then have a reason why we did it the other way.
+If you can defend your choices, then they're worth making.
+If you didn't know that you were breaking or doing something bad, then that's just bad on you.
+I think there's some linting plugins that can reorder the structs for you.
+- Yes, and if you've updated your golang- the linting thing to the latest version that I've kind of cobbled together, it's at least in valuation in the answer service if you wanna take a look and update your project.
+And you run make lint, it will tell you if you have a struct that is badly oversized.
+So yeah, we do have linting for that if your project is up to date.
+>> Yeah, and sorry, like I was mistaken, go 1.25 wouldn't warn you for that nil point in the reference, it's something else.
+>> Okay, I do know that 1.25, they added something to save your butt, But I can't remember what that is right now either.
+Any other questions or thoughts? All right, yeah, if you think of anything later on, just feel free to ping me.
