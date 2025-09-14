@@ -25,20 +25,35 @@ color = "" #color from the theme settings
 
 **TL;DR:** Use values by default in Go; only use pointers when you need mutability, performance for large structs, or to distinguish between zero values and nil. Be mindful of dereferencing pointers since dereferencing a nil is a run time panic.
 
-Go is fundamentally written to be passed by value.
-Everything is passed by value.
-All the function arguments, even your pointers, you're literally passing a copy of the memory address.
-when you pass a pointer to a function.
-So why should we use pointers? Basically, you need to use a pointer if you need mutability for performance for larger structs and large pieces of data and optional values, or specifically values you need to know whether it was not provided at all or whether it was provided with its empty value, like a zero for an int or a empty string for a string.
-When not to use pointers? Well, because it is mutable.
-You are allowing something else to potentially change your variable.
-Nil dereferencing, I created a nice bug in valuation service last week or this week, and fortunately was caught before we deployed it.
-But basically, if you try to dereference a nil, that causes a runtime panic.
-And the worst part is it can live on the heap.
+### Fundamentals
+
+Go is fundamentally written to be passed by value. Everything is passed by value.
+All the function arguments, even your pointers, are literally passing a copy of the memory or the memory address.
+
+### Why/When to use Pointers
+
+Pointer should be used when:
+
+- need mutability
+- performance: passing larger structs or pieces of data
+- optional values - aka. need to know whether a variable was not provided or provided with its empty value
+
+### Why/When NOT to use Pointers
+
+Times not to use pointers:
+
+- need to prevent mutability
+- performance: data (may) live on the heap
+
+Why should pointers be avoided:
+
+- nil dereferencing bug; if you forget to check for nil and attempt to dereference that variable you create a run time error; nothing like a good panic
+
+### WAIT! Performance is a por and a con?
+
+Like everything else in life there are trade offs. It is important that you know what you may be getting yourself into.
+
 The heap requires garbage collection.
-And, oh, I don't know if one point, does it prevent it or does it simply, is there a check for it? - It's a Vorneuil, like compiler Vorneuil.
-- Nice, okay.
-So once we get to 125, so in six months, then we're gonna have a little backstop on that.
 Again, living on the heap requires garbage collection.
 Garbage collection can lead to a stop the world event, and you don't have any control over that.
 So copious throwing things on the heap can have unexpected performance implications.
